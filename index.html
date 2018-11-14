@@ -355,16 +355,17 @@ new Vue({
 ### Vue的坑
 
 + 更新array下标不能诱发react
+
 --
 
 ```javascript
 
 new Vue({
   computed:{ 
-    a(){return this.arr[0]}  //won't update!
+    a(){return this.arr[0]}  
   },
   ...someMethod(){
-    this.arr[0] = someValue;
+    this.arr[0] = someValue; //won't update!
   }
 })
 ```
@@ -478,7 +479,7 @@ class: center
 
 --
 
-## `<router-view/>`
+## &lt;router-view/>
 
 --
 
