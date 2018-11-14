@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Title</title>
-    <meta charset="utf-8">
-    <style>
 
-      h1, h2, h3 {
-        font-weight: normal;
-      }
-	/*  Define the background color for all the EVEN background rows  */
-	tr:nth-child(even){
-		background: #dae5f4;
-	}
+<head>
+  <title>Title</title>
+  <meta charset="utf-8">
+  <style>
+    h1,
+    h2,
+    h3 {
+      font-weight: normal;
+    }
 
-    </style>
-  </head>
-  <body>
-    <textarea id="source">
+    /*  Define the background color for all the EVEN background rows  */
+    tr:nth-child(even) {
+      background: #dae5f4;
+    }
+  </style>
+</head>
+
+<body>
+  <textarea id="source">
 
 
 class: center, middle
@@ -480,12 +483,11 @@ class: middle, center
 
 
     </textarea>
-    <script src="remark.min.js">
-    </script>
-    <script>
-      var slideshow = remark.create();
-	  
- 
-    </script>
-  </body>
+  <script src="remark.min.js">
+  </script>
+  <script>
+    var slideshow = remark.create();
+  </script>
+</body>
+
 </html>
