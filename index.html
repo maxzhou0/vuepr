@@ -37,7 +37,7 @@ class: center, middle
 
 + ### 环境搭建
 + ### 背景介绍
-+ ### React Programming 
++ ### React Programming/Vue
 + ### Vuetify
 
 ---
@@ -47,6 +47,8 @@ class: center, middle
 # 环境搭建
 
 ---
+
+class: center, middle
 
 + ### Chrome
 + ### 谷歌访问助手,Decentraleyes
@@ -59,12 +61,12 @@ class: center, middle
 
 ---
 
+class: center, middle
 # 背景介绍
 
 ---
 
 class: center, middle
-
 ## java ≠ javascript (1995)
 
 --
@@ -471,6 +473,79 @@ class: middle,center
 
 ## activated/deactivated, mounted/beforeDestroy
 
+
+---
+
+### Vuex
+
+- State 状态/数据共享 对应Vue.data
+
+--
+
+- Getters 只读访问  对应Vue.computeted
+
+--
+
+- Mutations 修改状态/数据
+
+--
+
+- Actions 访问Mutations
+
+---
+
+### Vuex
+
+- 严格模式下不能直接修改state，~~v-model~~
+
+--
+
+- Mutations必须是同步提交数据修改 
+
+--
+
+- Actions不能直接修改state，必须通过Mutations
+
+--
+
+> *根据文档，是因为我们想要更明确地追踪到状态的变化。这个简单的约定能够让你的意图更加明显，这样你在阅读代码的时候能更容易地解读应用内部的状态改变。此外，这样也让我们有机会去实现一些能记录每次状态改变，保存状态快照的调试工具。有了它，我们甚至可以实现如时间穿梭般的调试体验。*
+
+--
+
+- Getters/Mutations 声明要带state入参, Actions要带context入参
+
+--
+
+- Mutations/Actions 传递参数只能有一个
+
+---
+
+### Vuex
+
+- Actions -> Mutations -> State?
+
+--
+
+- Actions声明 yourAction(context,{x,y,z})
+- (this.$store/context).dispatch('xxx/yourAction',{x:...,y:...,z...})
+
+--
+
+- Mutations声明 yourMutation(state,{a,b,c})
+- (this.$store/store).commit('xxx/yourMutation',{a:...,b:...,c:...})
+
+--
+
+- state在vuex内部调用 state.yourState/state.xxx.yourState
+- state在vue控件中调用 this.$store.state.xxx.yourStaet
+
+--
+
+- Getters调用  this.$store.getters.yourGetters/this.$store.getters['xxx/yourGetters']
+
+--
+
+- import {mapActions,mapMutations,mapGetters,mapState} from 'vuex'
 
 ---
 
