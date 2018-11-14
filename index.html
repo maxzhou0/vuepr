@@ -48,14 +48,14 @@ class: center, middle
 
 ---
 
-class: center, middle
+class:  middle
 
-+ ### Chrome
-+ ### 谷歌访问助手,Decentraleyes
-+ ### Git for windows/Git tortorise (32bits/64bits)
-+ ### GitHub注册 /stackoverflow/codepen/freecodecamp/...
-+ ### GitHub创建仓库，GitClone到本地
-+ ### VSCode, settings同步/vue package/beautify
++ Chrome
++ 谷歌访问助手,Decentraleyes
++ Git for windows/Git tortorise (32bits/64bits)
++ GitHub注册 /stackoverflow/codepen/freecodecamp/...
++ GitHub创建仓库，GitClone到本地
++ VSCode, settings同步/vue package/beautify
 
 
 
@@ -92,15 +92,13 @@ class: center, middle
 ---
 
 class: middle
-## a : 1
-## b : 2
-## c : a+1
-## d : b*2
-## e : c*(b+2)
+### a : 1
+### b : 2
+### c : a+1
+### d : b*2
+### e : c*(b+2)
 
 ---
-
-class:middle
 
 #### Vue Object:
 
@@ -117,14 +115,7 @@ class:middle
 	}
 }
 ```
-
----
-
-
-
-class:middle
-
-#### Vue Object:
+--
 
 ```javascript
 {
@@ -305,27 +296,33 @@ class: center,middle
 ### Vue的坑
 
 + data和computed定义以外的数据项不能诱发react
+
 --
 
 ```javascript
-{
+
+new Vue({
   computed: {
     a() { return Cookie.get('a'); }
   }
-}
+});
 ```
---
+---
+
+### Vue的坑
 
 + data的属性的属性不能诱发react
+
 --
 
 ```javascript
-{
+
+new Vue({
   data: { obj: {}},
   computed: {
     a() {return this.obj.a;}
   }
-}
+})
 ```
 
 --
@@ -339,7 +336,16 @@ this.$set(this.obj,'a',someValue)
 --
 
 ```javascript
-data:{obj:{a:null}}
+new Vue({
+  data: { 
+    obj: {
+      a: null
+      }
+  },
+  computed: {
+    a() {return this.obj.a;}
+  }
+})
 ```
 
 --
@@ -352,41 +358,47 @@ data:{obj:{a:null}}
 --
 
 ```javascript
-{
+
+new Vue({
   computed:{ 
     a(){return this.arr[0]}  //won't update!
   },
   ...someMethod(){
     this.arr[0] = someValue;
   }
-}
+})
 ```
 
 --
 ```javascript
+
 this.$set(this.arr,0,someValue)
 ```
---
 
 ---
 
 ### Vue的坑
 
 + 延时调用不触发react
+
 --
 
+
 ```javascript
-computed: {
-  c() {
-	//this.a //react
-	setTimeout(() => {
-	  this.a //no react
-	  console.log('c delay fired')
-	}, 1000)
-	console.log('c fired')
-	return this.b + 44
+
+new Vue({
+  computed: {
+    c() {
+    //this.a //react
+    setTimeout(() => {
+      this.a //no react
+      console.log('c delay fired')
+    }, 1000)
+    console.log('c fired')
+    return this.b + 44
+    }
   }
-}
+})
 ```
 
 ---
@@ -394,12 +406,14 @@ computed: {
 ### Vue模板
 
 ```html
+
 <span>{{message}}</span>
 ```
 
 =>
 
 ```javascript
+
 {
 	computed:{
 		somefunc(){
@@ -432,6 +446,7 @@ func.apply(this,...)
 --
 
 > *document是浏览器提供的视图层*
+
 > *vue.x vue.y vue.z*
 
 --
@@ -456,7 +471,7 @@ https://cn.vuejs.org/v2/guide/
 
 ---
 
-class: middle,center
+class: center
 
 
 # Vue-router
@@ -478,45 +493,35 @@ class: middle,center
 
 ### Vuex
 
+--
+
 - State 状态/数据共享 对应Vue.data
+
+   - 严格模式下不能直接修改state，~~v-model~~
 
 --
 
-- Getters 只读访问  对应Vue.computeted
+- Getters 只读访问  对应Vue.computed，
+
+   - 入口参数必须用state访问数据
 
 --
 
 - Mutations 修改状态/数据
 
---
-
-- Actions 访问Mutations
-
----
-
-### Vuex
-
-- 严格模式下不能直接修改state，~~v-model~~
+   - 入参必须是(state,data)
 
 --
 
-- Mutations必须是同步提交数据修改 
+- Actions 可异步，必须通过Mutations修改state，
 
---
-
-- Actions不能直接修改state，必须通过Mutations
+   - 入参必须是(context,data)
 
 --
 
 > *根据文档，是因为我们想要更明确地追踪到状态的变化。这个简单的约定能够让你的意图更加明显，这样你在阅读代码的时候能更容易地解读应用内部的状态改变。此外，这样也让我们有机会去实现一些能记录每次状态改变，保存状态快照的调试工具。有了它，我们甚至可以实现如时间穿梭般的调试体验。*
 
 --
-
-- Getters/Mutations 声明要带state入参, Actions要带context入参
-
---
-
-- Mutations/Actions 传递参数只能有一个
 
 ---
 
@@ -527,25 +532,37 @@ class: middle,center
 --
 
 - Actions声明 yourAction(context,{x,y,z})
-- (this.$store/context).dispatch('xxx/yourAction',{x:...,y:...,z...})
+
+```javascript
+(this.$store/context).dispatch('xxx/yourAction',{x:...,y:...,z...})
+```
 
 --
 
 - Mutations声明 yourMutation(state,{a,b,c})
-- (this.$store/store).commit('xxx/yourMutation',{a:...,b:...,c:...})
+
+```javascript
+(this.$store/store).commit('xxx/yourMutation',{a:...,b:...,c:...})
+```
 
 --
 
 - state在vuex内部调用 state.yourState/state.xxx.yourState
-- state在vue控件中调用 this.$store.state.xxx.yourStaet
+  - state在vue控件中调用 this.$store.state.xxx.yourState
 
 --
 
-- Getters调用  this.$store.getters.yourGetters/this.$store.getters['xxx/yourGetters']
+- Getters调用  
+
+```javascript
+this.$store.getters.yourGetters/this.$store.getters['xxx/yourGetters']
+```
 
 --
 
-- import {mapActions,mapMutations,mapGetters,mapState} from 'vuex'
+```javascript
+import {mapActions,mapMutations,mapGetters,mapState} from 'vuex'
+```
 
 ---
 
