@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8" />
+    <style>
+      h1,
+      h2,
+      h3 {
+        font-weight: normal;
+      }
 
-<head>
-  <title>Title</title>
-  <meta charset="utf-8">
-  <style>
-    h1,
-    h2,
-    h3 {
-      font-weight: normal;
-    }
+      /*  Define the background color for all the EVEN background rows  */
+      tr:nth-child(even) {
+        background: #dae5f4;
+      }
+    </style>
+  </head>
 
-    /*  Define the background color for all the EVEN background rows  */
-    tr:nth-child(even) {
-      background: #dae5f4;
-    }
-  </style>
-</head>
-
-<body>
-  <textarea id="source">
+  <body>
+    <textarea id="source">
 
 
 class: center, middle
@@ -408,7 +407,7 @@ new Vue({
 
 ```html
 
-<span>{{message}}</span>
+<span>{{ message }}</span>
 ```
 
 =>
@@ -479,7 +478,7 @@ class: center
 
 --
 
-## &lt;router-view/>
+## < router-view/>
 
 --
 
@@ -521,8 +520,6 @@ class: center
 --
 
 > *根据文档，是因为我们想要更明确地追踪到状态的变化。这个简单的约定能够让你的意图更加明显，这样你在阅读代码的时候能更容易地解读应用内部的状态改变。此外，这样也让我们有机会去实现一些能记录每次状态改变，保存状态快照的调试工具。有了它，我们甚至可以实现如时间穿梭般的调试体验。*
-
---
 
 ---
 
@@ -598,11 +595,9 @@ class: middle, center
 
 
     </textarea>
-  <script src="remark.min.js">
-  </script>
-  <script>
-    var slideshow = remark.create();
-  </script>
-</body>
-
+    <script src="remark.min.js"></script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
 </html>
